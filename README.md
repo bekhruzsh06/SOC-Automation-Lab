@@ -30,13 +30,33 @@ The purpose of this step was to design a logical diagram to undersrand the workf
   <em>Figure 1: SOC Automation Workflow Diagram</em>
 </p>
 
-#### Steps Overview
+#### Workflow Overview
 
-- Step 1: Wazuh Agent on Windows Client sends events to Wazuh Manager via Internet
-- Step 2: Wazuh Manager receives events
-- Step 3: Wazuh Manager sends alerts to Shuffle SOAR which decides what to do with them
-- Step 4,5,6,7: Shuffle enrichs IOCs on VirusTotal, sends alerts to TheHive and sends email containing alert information to SOC analyst
-- Step 8: SOC Analyst sends response actions to Shuffle which retranslates them to Wazuh Manager
-- Step 9: Wazuh Manager performs response instructions given by SOC Analyst on Client machine
+##### Step 1 — Endpoint Telemetry Collection
+The Wazuh Agent installed on the Windows endpoint collects security events, Sysmon logs, and telemetry data, then securely forwards them to the Wazuh Manager over the Internet.
+
+##### Step 2 — Event Processing & Correlation
+The Wazuh Manager receives, parses, and correlates incoming events to identify suspicious or malicious activity based on detection rules and configured alert thresholds.
+
+##### Step 3 — Alert Forwarding to SOAR Platform
+Generated alerts are forwarded from Wazuh to Shuffle SOAR for automated incident handling and orchestration.
+
+##### Step 4 — IOC Enrichment
+Shuffle extracts Indicators of Compromise (IOCs) such as IP addresses, domains, hashes, or URLs from alerts and enriches them using VirusTotal threat intelligence services.
+
+##### Step 5 — Incident Creation
+Enriched alerts are automatically converted into incident cases within TheHive platform for centralized investigation and case management.
+
+##### Step 6 — Analyst Notification
+Shuffle sends automated email notifications containing alert details, threat intelligence results, and incident information to the SOC analyst.
+
+##### Step 7 — Incident Investigation
+The SOC analyst reviews the alert, validates malicious activity, analyzes enriched IOC data, and determines the appropriate response action.
+
+##### Step 8 — Response Orchestration
+Response actions selected by the SOC analyst are submitted to Shuffle, which forwards the required response instructions to the Wazuh Manager.
+
+##### Step 9 — Automated Response Execution
+The Wazuh Manager executes active response actions given by SOC analyst on the endpoint machine.
 
 
