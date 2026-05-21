@@ -23,3 +23,7 @@ The lab integrates SIEM, XDR, SOAR, endpoint telemetry, threat intelligence enri
 
 The purpose of this step was to design a logical diagram to undersrand the workflow of the system. The diagram was drawn on draw.io website
 
+
+<img width="618" height="527" alt="SOC-diagram drawio" src="https://github.com/user-attachments/assets/c2bcd054-3be0-4bbc-ac75-4f9d0f7e081e" />
+
+
