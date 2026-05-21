@@ -30,4 +30,13 @@ The purpose of this step was to design a logical diagram to undersrand the workf
   <em>Figure 1: SOC Automation Workflow Diagram</em>
 </p>
 
+#### Steps Overview
+
+- Step 1: Wazuh Agent on Windows Client sends events to Wazuh Manager via Internet
+- Step 2: Wazuh Manager receives events
+- Step 3: Wazuh Manager sends alerts to Shuffle SOAR which decides what to do with them
+- Step 4,5,6,7: Shuffle enrichs IOCs on VirusTotal, sends alerts to TheHive and sends email containing alert information to SOC analyst
+- Step 8: SOC Analyst sends response actions to Shuffle which retranslates them to Wazuh Manager
+- Step 9: Wazuh Manager performs response instructions given by SOC Analyst on Client machine
+
 
