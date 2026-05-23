@@ -321,3 +321,6 @@ On the rules section, clicked custom rules and edited the rule to detect mimikat
 
 <img width="1838" height="285" alt="изображение" src="https://github.com/user-attachments/assets/fff2c054-29d1-45e1-aad6-318105a5bc01" />
 
+edit the local_rules.xml file and add the rule, that will detect sysmon event id 1 (Process Creation) and OriginalFileName field - mimikatz.exe
+
+<img width="866" height="174" alt="изображение" src="https://github.com/user-attachments/assets/5bad9a78-c8a0-479d-b779-59738aabda2e" />
