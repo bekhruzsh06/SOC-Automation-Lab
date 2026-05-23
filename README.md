@@ -213,3 +213,85 @@ Following that, I entered the url address and entered the dashboard
 
 <img width="1915" height="847" alt="изображение" src="https://github.com/user-attachments/assets/92a203ef-f195-43e9-ba41-48263cbc42ac" />
 
+
+### 3.2 Configuring Wazuh
+
+On my virtualbox Windows workstation I entered to dashboard and there clicked Deploy Agent to install the agent on the client
+
+<img width="1880" height="855" alt="изображение" src="https://github.com/user-attachments/assets/e0be52e5-e6ac-44ce-93a8-119a80f864e2" />
+
+Configured accordingly and ran the powershell command given by Wazuh
+
+<img width="977" height="631" alt="изображение" src="https://github.com/user-attachments/assets/4f01e567-f3f3-47af-950a-df709c388f82" />
+
+```powershell
+Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.14.5-1.msi -OutFile $env:tmp\wazuh-agent; msiexec.exe /i $env:tmp\wazuh-agent /q WAZUH_MANAGER='192.248.147.195' WAZUH_AGENT_NAME='bek-windows10'
+```
+
+And start wazuh
+
+```powershell
+net start wazuh
+```
+
+<img width="499" height="125" alt="изображение" src="https://github.com/user-attachments/assets/7de29bf8-0c9a-4b7d-8b03-5d5520323705" />
+
+And then from the dashboard we can see that the agent was added successfully
+
+<img width="1332" height="626" alt="изображение" src="https://github.com/user-attachments/assets/d286f458-e079-419f-8808-894779ea9593" />
+
+
+### Stage 4: Configuring Windows 10 host
+
+On this stage, we are configuring windows 10 host, sending sysmon telemtry to wazuh manager and creating custom detection rules for mimikatz
+
+### 4.1 Configuring host for Sysmon telemetry ingestion
+
+Firstly, we need to configure ossec.conf file, which is the primary configuration file for wazuh agent
+
+<img width="795" height="452" alt="изображение" src="https://github.com/user-attachments/assets/a45ed6a3-5e75-4a5d-8707-c061378bce0c" />
+
+Here, log analysis shows which event logs are ingested into wazuh
+
+So we should replace it with sysmon logs instead
+
+<img width="643" height="560" alt="изображение" src="https://github.com/user-attachments/assets/80c5e67c-0f09-48c5-b948-47d7c44774c9" />
+
+Copied the full name from event viewer and inserted into conf file
+
+<img width="592" height="110" alt="изображение" src="https://github.com/user-attachments/assets/881c8ffa-fce6-403b-8dd1-2222bc204795" />
+
+Now if we search for Sysmon in ElasticSearch, we notice that it is present
+
+<img width="1018" height="485" alt="изображение" src="https://github.com/user-attachments/assets/d437bd08-7fd5-4c74-92b5-20d4ff73b7c6" />
+
+### 4.2 Generating Mimikatz telemetry
+
+On this step, we will generate mimikatz telemetry to see patterns that we can use further on rule development
+
+First, we need to disable Windows Defender Firewall for our attack to go smoothly
+
+<img width="777" height="851" alt="изображение" src="https://github.com/user-attachments/assets/6e902789-21a0-4fa5-9ee4-49e8d0891f07" />
+
+After that, I downloaded mimikatz from github, and executed it on my Windows 10 client
+
+<img width="762" height="177" alt="изображение" src="https://github.com/user-attachments/assets/ab507504-a85a-496a-8ef4-7ef7585590f3" />
+
+But to capture mimikatz logs, we need enable archiving of logs, which allows us to store and query raw data, which may not be captured by standard alert rules.
+
+To do so, we first configure the ossec.conf file on manager
+
+```bash
+nano /var/ossec/etc/ossec.conf
+```
+
+Changle logall and alertall to "yes"
+
+<img width="502" height="79" alt="изображение" src="https://github.com/user-attachments/assets/34b49a9a-b344-47bf-b668-2db8c4b5f6f6" />
+
+
+And archives enabled to yes
+
+<img width="557" height="158" alt="изображение" src="https://github.com/user-attachments/assets/f1a5a10e-b741-4f2e-af7f-3b2e2c0b065d" />
+
+Then we should create an indexer on elasticsearch to make the data, containing mimikatz searchable
