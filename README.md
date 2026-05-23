@@ -329,6 +329,8 @@ Now searching for the mimikatz from wazuh-alerts* index, triggers the rule
 
 <img width="1870" height="630" alt="изображение" src="https://github.com/user-attachments/assets/fabcf0ea-b026-448b-8e6e-2e08e2c51c80" />
 
+We can also see the description of the rule:
+
 <img width="665" height="249" alt="изображение" src="https://github.com/user-attachments/assets/1bc6126f-55df-43a6-92c2-10ceb36e5a50" />
 
 
