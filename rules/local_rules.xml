@@ -17,7 +17,7 @@
   </rule>
   
     <rule id="100002" level="5">
-    <if_group>sysmonevent1</if_group>
+    <if_group>sysmon_event1</if_group>
     <field name="win.eventdata.OriginalFileName" type="pcre2">(?i)mimikatz\.exe</field>
     <description>Mimikatz Usage Detected</description>
     <mitre>
