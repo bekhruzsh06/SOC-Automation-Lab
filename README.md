@@ -295,3 +295,29 @@ And archives enabled to yes
 <img width="557" height="158" alt="изображение" src="https://github.com/user-attachments/assets/f1a5a10e-b741-4f2e-af7f-3b2e2c0b065d" />
 
 Then we should create an indexer on elasticsearch to make the data, containing mimikatz searchable
+
+On the dashboard management, we click go to index patterns
+
+<img width="246" height="171" alt="изображение" src="https://github.com/user-attachments/assets/d591f96b-5490-4e03-bbcb-422cddefd319" />
+
+Create index pattern
+
+<img width="1209" height="483" alt="изображение" src="https://github.com/user-attachments/assets/751f293b-19e7-4aee-90bd-a178d9281a95" />
+
+<img width="1182" height="323" alt="изображение" src="https://github.com/user-attachments/assets/3671e657-8e4f-47f1-a7a5-ceb17543bc60" />
+
+Now on the index patterns, we can find our archives index
+
+<img width="358" height="239" alt="изображение" src="https://github.com/user-attachments/assets/5b2e4161-204d-40ee-9e29-43d1d3983c2a" />
+
+Now after choosing the index pattern we created and searching for mimikatz, we can find events, related it
+
+<img width="1876" height="764" alt="изображение" src="https://github.com/user-attachments/assets/81b9bc91-c201-437d-a1b5-e8d7a5be9c06" />
+
+
+#### 4.3 Creating a rule for mimikatz detection
+
+On the rules section, clicked custom rules and edited the rule to detect mimikatz
+
+<img width="1838" height="285" alt="изображение" src="https://github.com/user-attachments/assets/fff2c054-29d1-45e1-aad6-318105a5bc01" />
+
