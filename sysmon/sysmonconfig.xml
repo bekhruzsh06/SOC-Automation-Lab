@@ -17,6 +17,15 @@
 <!--            (&    ,&.                                                                                                          -->
 <!--             .*&&*.                                                                                                            -->
 <!--                                                                                                                               -->
+<!-- 
+## Credits
+
+This project uses a modified Sysmon configuration based on:
+
+https://github.com/olafhartong/sysmon-modular
+
+Author: Olaf Hartong -->
+
 <Sysmon schemaversion="4.90">
 <HashAlgorithms>*</HashAlgorithms>
 <!--  This now also determines the file names of the files preserved (String)  -->
