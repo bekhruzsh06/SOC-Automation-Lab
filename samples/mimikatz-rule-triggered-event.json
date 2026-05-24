@@ -1,0 +1,109 @@
+{
+  "_index": "wazuh-alerts-4.x-2026.05.23",
+  "_id": "Zca2Vp4BVOMROqP2vhfD",
+  "_version": 1,
+  "_score": null,
+  "_source": {
+    "input": {
+      "type": "log"
+    },
+    "agent": {
+      "ip": "10.0.2.15",
+      "name": "bek-windows10",
+      "id": "001"
+    },
+    "manager": {
+      "name": "Wazuh"
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "originalFileName": "mimikatz.exe",
+          "image": "C:\\\\Users\\\\vboxuser\\\\Downloads\\\\mimikatz_trunk\\\\x64\\\\mimikatz.exe",
+          "product": "mimikatz",
+          "parentProcessGuid": "{a2fdc732-0cbe-6a12-9902-000000000700}",
+          "description": "mimikatz for Windows",
+          "logonGuid": "{a2fdc732-fdc2-6a11-e6f8-050000000000}",
+          "parentCommandLine": "\\\"C:\\\\Windows\\\\system32\\\\WindowsPowerShell\\\\v1.0\\\\PowerShell.exe\\\"",
+          "processGuid": "{a2fdc732-1a15-6a12-0804-000000000700}",
+          "logonId": "0x5f8e6",
+          "parentProcessId": "6812",
+          "processId": "7380",
+          "currentDirectory": "C:\\\\Users\\\\vboxuser\\\\Downloads\\\\mimikatz_trunk\\\\x64\\\\",
+          "utcTime": "2026-05-23 21:20:21.449",
+          "hashes": "SHA1=E3B6EA8C46FA831CEC6F235A5CF48B38A4AE8D69,MD5=29EFD64DD3C7FE1E2B022B7AD73A1BA5,SHA256=61C0810A23580CF492A6BA4F7654566108331E7A4134C968C2D6A05261B2D8A1,IMPHASH=55EE500BB4BDFC49F27A98AE456D8EDF",
+          "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+          "ruleName": "technique_id=T1036,technique_name=Masquerading",
+          "company": "gentilkiwi (Benjamin DELPY)",
+          "commandLine": "\\\"C:\\\\Users\\\\vboxuser\\\\Downloads\\\\mimikatz_trunk\\\\x64\\\\mimikatz.exe\\\"",
+          "integrityLevel": "High",
+          "fileVersion": "2.2.0.0",
+          "user": "WINDOWS\\\\vboxuser",
+          "terminalSessionId": "1",
+          "parentUser": "WINDOWS\\\\vboxuser"
+        },
+        "system": {
+          "eventID": "1",
+          "keywords": "0x8000000000000000",
+          "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+          "level": "4",
+          "channel": "Microsoft-Windows-Sysmon/Operational",
+          "opcode": "0",
+          "message": "\"Process Create:\r\nRuleName: technique_id=T1036,technique_name=Masquerading\r\nUtcTime: 2026-05-23 21:20:21.449\r\nProcessGuid: {a2fdc732-1a15-6a12-0804-000000000700}\r\nProcessId: 7380\r\nImage: C:\\Users\\vboxuser\\Downloads\\mimikatz_trunk\\x64\\mimikatz.exe\r\nFileVersion: 2.2.0.0\r\nDescription: mimikatz for Windows\r\nProduct: mimikatz\r\nCompany: gentilkiwi (Benjamin DELPY)\r\nOriginalFileName: mimikatz.exe\r\nCommandLine: \"C:\\Users\\vboxuser\\Downloads\\mimikatz_trunk\\x64\\mimikatz.exe\"\r\nCurrentDirectory: C:\\Users\\vboxuser\\Downloads\\mimikatz_trunk\\x64\\\r\nUser: WINDOWS\\vboxuser\r\nLogonGuid: {a2fdc732-fdc2-6a11-e6f8-050000000000}\r\nLogonId: 0x5F8E6\r\nTerminalSessionId: 1\r\nIntegrityLevel: High\r\nHashes: SHA1=E3B6EA8C46FA831CEC6F235A5CF48B38A4AE8D69,MD5=29EFD64DD3C7FE1E2B022B7AD73A1BA5,SHA256=61C0810A23580CF492A6BA4F7654566108331E7A4134C968C2D6A05261B2D8A1,IMPHASH=55EE500BB4BDFC49F27A98AE456D8EDF\r\nParentProcessGuid: {a2fdc732-0cbe-6a12-9902-000000000700}\r\nParentProcessId: 6812\r\nParentImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nParentCommandLine: \"C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\PowerShell.exe\" \r\nParentUser: WINDOWS\\vboxuser\"",
+          "version": "5",
+          "systemTime": "2026-05-23T21:20:21.4692624Z",
+          "eventRecordID": "11647",
+          "threadID": "1148",
+          "computer": "Windows",
+          "task": "1",
+          "processID": "2956",
+          "severityValue": "INFORMATION",
+          "providerName": "Microsoft-Windows-Sysmon"
+        }
+      }
+    },
+    "rule": {
+      "firedtimes": 1,
+      "mail": true,
+      "level": 15,
+      "description": "Mimikatz Usage Detected",
+      "groups": [
+        "local",
+        "syslog",
+        "sshd"
+      ],
+      "mitre": {
+        "technique": [
+          "OS Credential Dumping"
+        ],
+        "id": [
+          "T1003"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      },
+      "id": "100002"
+    },
+    "location": "EventChannel",
+    "decoder": {
+      "name": "windows_eventchannel"
+    },
+    "id": "1779571276.23785877",
+    "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"1\",\"version\":\"5\",\"level\":\"4\",\"task\":\"1\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-05-23T21:20:21.4692624Z\",\"eventRecordID\":\"11647\",\"processID\":\"2956\",\"threadID\":\"1148\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"Windows\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"Process Create:\\r\\nRuleName: technique_id=T1036,technique_name=Masquerading\\r\\nUtcTime: 2026-05-23 21:20:21.449\\r\\nProcessGuid: {a2fdc732-1a15-6a12-0804-000000000700}\\r\\nProcessId: 7380\\r\\nImage: C:\\\\Users\\\\vboxuser\\\\Downloads\\\\mimikatz_trunk\\\\x64\\\\mimikatz.exe\\r\\nFileVersion: 2.2.0.0\\r\\nDescription: mimikatz for Windows\\r\\nProduct: mimikatz\\r\\nCompany: gentilkiwi (Benjamin DELPY)\\r\\nOriginalFileName: mimikatz.exe\\r\\nCommandLine: \\\"C:\\\\Users\\\\vboxuser\\\\Downloads\\\\mimikatz_trunk\\\\x64\\\\mimikatz.exe\\\"\\r\\nCurrentDirectory: C:\\\\Users\\\\vboxuser\\\\Downloads\\\\mimikatz_trunk\\\\x64\\\\\\r\\nUser: WINDOWS\\\\vboxuser\\r\\nLogonGuid: {a2fdc732-fdc2-6a11-e6f8-050000000000}\\r\\nLogonId: 0x5F8E6\\r\\nTerminalSessionId: 1\\r\\nIntegrityLevel: High\\r\\nHashes: SHA1=E3B6EA8C46FA831CEC6F235A5CF48B38A4AE8D69,MD5=29EFD64DD3C7FE1E2B022B7AD73A1BA5,SHA256=61C0810A23580CF492A6BA4F7654566108331E7A4134C968C2D6A05261B2D8A1,IMPHASH=55EE500BB4BDFC49F27A98AE456D8EDF\\r\\nParentProcessGuid: {a2fdc732-0cbe-6a12-9902-000000000700}\\r\\nParentProcessId: 6812\\r\\nParentImage: C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\r\\nParentCommandLine: \\\"C:\\\\Windows\\\\system32\\\\WindowsPowerShell\\\\v1.0\\\\PowerShell.exe\\\" \\r\\nParentUser: WINDOWS\\\\vboxuser\\\"\"},\"eventdata\":{\"ruleName\":\"technique_id=T1036,technique_name=Masquerading\",\"utcTime\":\"2026-05-23 21:20:21.449\",\"processGuid\":\"{a2fdc732-1a15-6a12-0804-000000000700}\",\"processId\":\"7380\",\"image\":\"C:\\\\\\\\Users\\\\\\\\vboxuser\\\\\\\\Downloads\\\\\\\\mimikatz_trunk\\\\\\\\x64\\\\\\\\mimikatz.exe\",\"fileVersion\":\"2.2.0.0\",\"description\":\"mimikatz for Windows\",\"product\":\"mimikatz\",\"company\":\"gentilkiwi (Benjamin DELPY)\",\"originalFileName\":\"mimikatz.exe\",\"commandLine\":\"\\\\\\\"C:\\\\\\\\Users\\\\\\\\vboxuser\\\\\\\\Downloads\\\\\\\\mimikatz_trunk\\\\\\\\x64\\\\\\\\mimikatz.exe\\\\\\\"\",\"currentDirectory\":\"C:\\\\\\\\Users\\\\\\\\vboxuser\\\\\\\\Downloads\\\\\\\\mimikatz_trunk\\\\\\\\x64\\\\\\\\\",\"user\":\"WINDOWS\\\\\\\\vboxuser\",\"logonGuid\":\"{a2fdc732-fdc2-6a11-e6f8-050000000000}\",\"logonId\":\"0x5f8e6\",\"terminalSessionId\":\"1\",\"integrityLevel\":\"High\",\"hashes\":\"SHA1=E3B6EA8C46FA831CEC6F235A5CF48B38A4AE8D69,MD5=29EFD64DD3C7FE1E2B022B7AD73A1BA5,SHA256=61C0810A23580CF492A6BA4F7654566108331E7A4134C968C2D6A05261B2D8A1,IMPHASH=55EE500BB4BDFC49F27A98AE456D8EDF\",\"parentProcessGuid\":\"{a2fdc732-0cbe-6a12-9902-000000000700}\",\"parentProcessId\":\"6812\",\"parentImage\":\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe\",\"parentCommandLine\":\"\\\\\\\"C:\\\\\\\\Windows\\\\\\\\system32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\PowerShell.exe\\\\\\\"\",\"parentUser\":\"WINDOWS\\\\\\\\vboxuser\"}}}",
+    "timestamp": "2026-05-23T21:21:16.074+0000"
+  },
+  "fields": {
+    "timestamp": [
+      "2026-05-23T21:21:16.074Z"
+    ]
+  },
+  "highlight": {
+    "full_log": [
+      "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Sysmon\",\"providerGuid\":\"{5770385f-c22a-43e0-bf4c-06f5698ffbd9}\",\"eventID\":\"1\",\"version\":\"5\",\"level\":\"4\",\"task\":\"1\",\"opcode\":\"0\",\"keywords\":\"0x8000000000000000\",\"systemTime\":\"2026-05-23T21:20:21.4692624Z\",\"eventRecordID\":\"11647\",\"processID\":\"2956\",\"threadID\":\"1148\",\"channel\":\"Microsoft-Windows-Sysmon/Operational\",\"computer\":\"Windows\",\"severityValue\":\"INFORMATION\",\"message\":\"\\\"Process Create:\\r\\nRuleName: technique_id=T1036,technique_name=Masquerading\\r\\nUtcTime: 2026-05-23 21:20:21.449\\r\\nProcessGuid: {a2fdc732-1a15-6a12-0804-000000000700}\\r\\nProcessId: 7380\\r\\nImage: C:\\\\Users\\\\vboxuser\\\\Downloads\\\\mimikatz_trunk\\\\x64\\\\mimikatz.exe\\r\\nFileVersion: 2.2.0.0\\r\\nDescription: @opensearch-dashboards-highlighted-field@mimikatz@/opensearch-dashboards-highlighted-field@ for Windows\\r\\nProduct: @opensearch-dashboards-highlighted-field@mimikatz@/opensearch-dashboards-highlighted-field@\\r\\nCompany: gentilkiwi (Benjamin DELPY)\\r\\nOriginalFileName: mimikatz.exe\\r\\nCommandLine: \\\"C:\\\\Users\\\\vboxuser\\\\Downloads\\\\mimikatz_trunk\\\\x64\\\\mimikatz.exe\\\"\\r\\nCurrentDirectory: C:\\\\Users\\\\vboxuser\\\\Downloads\\\\mimikatz_trunk\\\\x64\\\\\\r\\nUser: WINDOWS\\\\vboxuser\\r\\nLogonGuid: {a2fdc732-fdc2-6a11-e6f8-050000000000}\\r\\nLogonId: 0x5F8E6\\r\\nTerminalSessionId: 1\\r\\nIntegrityLevel: High\\r\\nHashes: SHA1=E3B6EA8C46FA831CEC6F235A5CF48B38A4AE8D69,MD5=29EFD64DD3C7FE1E2B022B7AD73A1BA5,SHA256=61C0810A23580CF492A6BA4F7654566108331E7A4134C968C2D6A05261B2D8A1,IMPHASH=55EE500BB4BDFC49F27A98AE456D8EDF\\r\\nParentProcessGuid: {a2fdc732-0cbe-6a12-9902-000000000700}\\r\\nParentProcessId: 6812\\r\\nParentImage: C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\r\\nParentCommandLine: \\\"C:\\\\Windows\\\\system32\\\\WindowsPowerShell\\\\v1.0\\\\PowerShell.exe\\\" \\r\\nParentUser: WINDOWS\\\\vboxuser\\\"\"},\"eventdata\":{\"ruleName\":\"technique_id=T1036,technique_name=Masquerading\",\"utcTime\":\"2026-05-23 21:20:21.449\",\"processGuid\":\"{a2fdc732-1a15-6a12-0804-000000000700}\",\"processId\":\"7380\",\"image\":\"C:\\\\\\\\Users\\\\\\\\vboxuser\\\\\\\\Downloads\\\\\\\\mimikatz_trunk\\\\\\\\x64\\\\\\\\mimikatz.exe\",\"fileVersion\":\"2.2.0.0\",\"description\":\"@opensearch-dashboards-highlighted-field@mimikatz@/opensearch-dashboards-highlighted-field@ for Windows\",\"product\":\"@opensearch-dashboards-highlighted-field@mimikatz@/opensearch-dashboards-highlighted-field@\",\"company\":\"gentilkiwi (Benjamin DELPY)\",\"originalFileName\":\"mimikatz.exe\",\"commandLine\":\"\\\\\\\"C:\\\\\\\\Users\\\\\\\\vboxuser\\\\\\\\Downloads\\\\\\\\mimikatz_trunk\\\\\\\\x64\\\\\\\\mimikatz.exe\\\\\\\"\",\"currentDirectory\":\"C:\\\\\\\\Users\\\\\\\\vboxuser\\\\\\\\Downloads\\\\\\\\mimikatz_trunk\\\\\\\\x64\\\\\\\\\",\"user\":\"WINDOWS\\\\\\\\vboxuser\",\"logonGuid\":\"{a2fdc732-fdc2-6a11-e6f8-050000000000}\",\"logonId\":\"0x5f8e6\",\"terminalSessionId\":\"1\",\"integrityLevel\":\"High\",\"hashes\":\"SHA1=E3B6EA8C46FA831CEC6F235A5CF48B38A4AE8D69,MD5=29EFD64DD3C7FE1E2B022B7AD73A1BA5,SHA256=61C0810A23580CF492A6BA4F7654566108331E7A4134C968C2D6A05261B2D8A1,IMPHASH=55EE500BB4BDFC49F27A98AE456D8EDF\",\"parentProcessGuid\":\"{a2fdc732-0cbe-6a12-9902-000000000700}\",\"parentProcessId\":\"6812\",\"parentImage\":\"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\powershell.exe\",\"parentCommandLine\":\"\\\\\\\"C:\\\\\\\\Windows\\\\\\\\system32\\\\\\\\WindowsPowerShell\\\\\\\\v1.0\\\\\\\\PowerShell.exe\\\\\\\"\",\"parentUser\":\"WINDOWS\\\\\\\\vboxuser\"}}}"
+    ]
+  },
+  "sort": [
+    1779571276074
+  ]
+}
