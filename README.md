@@ -1,4 +1,4 @@
-# SOC-Automation-Lab
+<img width="442" height="523" alt="изображение" src="https://github.com/user-attachments/assets/b3e0f6a9-687f-49fd-a412-89eb2a9476fb" /># SOC-Automation-Lab
 
 ## Overview
 
@@ -337,7 +337,7 @@ We can also see the description of the rule:
 
 On this stage, we are going to automate the workflow of Wazuh and TheHive using Shuffle
 
-### 5.1 Create a workflow on Shuffle
+#### 5.1 Linking Wazuh to shuffle
 
 Firstly, we are creating webhook and adding it to the ossec configuration file to link wazuh and shuffle
 
@@ -347,3 +347,109 @@ We should copy webhook's URI and add it to the offsec.conf
 
 <img width="401" height="185" alt="изображение" src="https://github.com/user-attachments/assets/6d829338-2882-4d68-a857-5bab9d2a7776" />
 
+<img width="1325" height="171" alt="изображение" src="https://github.com/user-attachments/assets/416182b3-cc8c-486d-b18e-cdb912aaf7bc" />
+
+
+And after running mimikatz.exe on the Windows client again, we can notice that webhook captures this event based on rule
+
+<img width="566" height="804" alt="изображение" src="https://github.com/user-attachments/assets/58ee52cd-19c1-4103-90fe-2071bb512f47" />
+
+
+#### 5.2 Extracting SHA256 hash and passing it to VirusTotal
+
+Initially, we are making shuffle tool to capture data of the field that stores SHA256. Tool is going to capture it by using regex
+
+<img width="996" height="522" alt="изображение" src="https://github.com/user-attachments/assets/66465168-6a25-46d7-843a-5628088401d7" />
+
+```
+SHA256=([0-9A-Fa-f]{64})
+```
+
+Then, we are linking VirusTotal to the regex parser, so it will parse the hash into VirusTotal
+
+<img width="810" height="286" alt="изображение" src="https://github.com/user-attachments/assets/6931f750-63a2-4318-89dd-a995499e12dc" />
+
+
+Grabbing our API key from the website and passing to the authenticator
+
+<img width="1887" height="356" alt="изображение" src="https://github.com/user-attachments/assets/7ec55685-3e10-4d64-a4e5-01b5dbe6ef9a" />
+
+Choosing the input to parse in VirusTotal
+
+<img width="573" height="742" alt="изображение" src="https://github.com/user-attachments/assets/083bd676-ba85-424c-b6dd-d6b7e6408bc2" />
+
+After running that workflow, we can see that http code is 200, so hash parsed to VirusTotal successfully
+
+<img width="535" height="669" alt="изображение" src="https://github.com/user-attachments/assets/ef1cc0e8-09f2-445a-b21a-f26068eecf88" />
+
+
+#### 5.3 Linking VirusTotal with TheHive
+
+Now, we need to send the report from VirusTotal to TheHive
+
+Firstly, we are linking TheHive and VirusTotal
+
+<img width="878" height="476" alt="изображение" src="https://github.com/user-attachments/assets/a0317968-947c-4bf5-9d49-f9e61b315d0a" />
+
+And creating an organisation in TheHive for alerts forwarding from shuffle
+
+<img width="855" height="808" alt="изображение" src="https://github.com/user-attachments/assets/297101df-8e3d-4496-8ee3-99bbec0031b3" />
+
+Then, creating a user inside of the organisation to log in into platform
+
+<img width="850" height="487" alt="изображение" src="https://github.com/user-attachments/assets/e7d95663-91d0-45a8-b3a4-c9181016586d" />
+
+And service account for creating an API key for authentication in shuffle
+
+<img width="859" height="684" alt="изображение" src="https://github.com/user-attachments/assets/5276d78c-d2d2-44a6-9890-7d3ea11c1b76" />
+
+Create and paste the API key to TheHive in shuffle
+
+<img width="849" height="179" alt="изображение" src="https://github.com/user-attachments/assets/58e71771-cbd8-4191-8cb0-1cb87f1e7958" />
+
+<img width="544" height="627" alt="изображение" src="https://github.com/user-attachments/assets/362e51ec-5104-4996-b77c-dff7f2188adc" />
+
+And after that, we are sending an event to TheHive with the following Body
+
+```
+{
+  "description": "$exec.title",
+  "externallink": "${externallink}",
+  "flag": false,
+  "pap": 2,
+  "severity": "3",
+  "source": "$exec.pretext",
+  "sourceRef": "$exec.rule_id",
+  "status": "New",
+  "summary": "Mimikatz activity detected on host $exec.text.win.system.computer",
+  "tags": ["T10003"],
+  "title": "$exec.title",
+  "tlp": "2",
+  "type": "internal"
+}
+```
+
+<img width="442" height="523" alt="изображение" src="https://github.com/user-attachments/assets/50dc795f-51ff-42e2-95af-b1a98576d4ad" />
+
+
+And after running that workflow, we can see that alert was sent successfully
+
+<img width="549" height="441" alt="изображение" src="https://github.com/user-attachments/assets/9fdfbbf4-0852-4758-8080-58597632ab58" />
+
+If we log in to our newly created normal account, we can see it as well
+
+<img width="1909" height="341" alt="изображение" src="https://github.com/user-attachments/assets/1b16dc48-843b-4281-9e69-a622e030f557" />
+
+
+<img width="1332" height="750" alt="изображение" src="https://github.com/user-attachments/assets/9daa3a46-13a9-4bed-a3ae-7cc4a11c264b" />
+
+
+#### 5.4 Sending email to SOC analyst
+
+First drag the email app into the workflow and connect it to the VirusTotal
+
+<img width="1398" height="720" alt="изображение" src="https://github.com/user-attachments/assets/d7494c11-5260-4be9-8691-28bd4f015c54" />
+
+And after running that workflow again, we can see the email sent to us with the appropriate message
+
+<img width="1604" height="465" alt="изображение" src="https://github.com/user-attachments/assets/f5469581-2fdc-49a3-b304-67765f21a632" />
