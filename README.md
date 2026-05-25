@@ -333,4 +333,17 @@ We can also see the description of the rule:
 
 <img width="665" height="249" alt="изображение" src="https://github.com/user-attachments/assets/1bc6126f-55df-43a6-92c2-10ceb36e5a50" />
 
+## Stage 5: Creating Automation
+
+On this stage, we are going to automate the workflow of Wazuh and TheHive using Shuffle
+
+### 5.1 Create a workflow on Shuffle
+
+Firstly, we are creating webhook and adding it to the ossec configuration file to link wazuh and shuffle
+
+<img width="1024" height="514" alt="изображение" src="https://github.com/user-attachments/assets/19d4ef0e-879c-4930-8f07-d3212258b5bb" />
+
+We should copy webhook's URI and add it to the offsec.conf
+
+<img width="401" height="185" alt="изображение" src="https://github.com/user-attachments/assets/6d829338-2882-4d68-a857-5bab9d2a7776" />
 
