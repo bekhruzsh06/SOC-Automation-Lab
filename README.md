@@ -1,4 +1,4 @@
-<img width="442" height="523" alt="изображение" src="https://github.com/user-attachments/assets/b3e0f6a9-687f-49fd-a412-89eb2a9476fb" /># SOC-Automation-Lab
+# SOC-Automation-Lab
 
 ## Overview
 
