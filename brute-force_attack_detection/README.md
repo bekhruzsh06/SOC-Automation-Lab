@@ -103,4 +103,4 @@ Added the following rule to local_rules.xml
 
 <img width="847" height="305" alt="изображение" src="https://github.com/user-attachments/assets/ab3f0dbe-540c-452f-9925-0b57a72165e1" />
 
-
+Rules updated, now if we run the brute-force on hydra again, ... 
