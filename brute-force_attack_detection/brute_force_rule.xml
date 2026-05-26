@@ -1,0 +1,11 @@
+  <rule id="100003" level="10">
+  <same_source_ip />
+   <if_sid>5503</if_sid>
+   <frequency>5</frequency>
+   <timeframe>60</timeframe>
+   <description>Possible Brute-Force Attempt Detected</description>
+   <mitre>
+    <id>T1110</id>
+   </mitre>
+  <group>authentication_failed, sshd, brute_force,</group>
+  </rule>
