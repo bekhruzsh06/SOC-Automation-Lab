@@ -1,8 +1,6 @@
-  <rule id="100003" level="10">
-    <if_sid>5503</if_sid>
-    <same_source_ip />
-    <frequency>5</frequency>
-    <timeframe>60</timeframe>
+  <rule id="100003" level="10" frequency="5" timeframe="60">
+    <if_matched_sid>5503</if_matched_sid>
+    <same_srcip />
     <description>Possible SSH Brute-Force Attempt Detected from $(srcip)</description>
     <mitre>
       <id>T1110</id>
