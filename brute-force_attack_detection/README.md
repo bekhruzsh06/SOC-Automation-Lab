@@ -92,3 +92,15 @@ Attack was completed successfully
 After checking the ElasticSearch, we can find out that event was captured successfully and triggered Wazuh rule with SID 5503
 
 <img width="1493" height="777" alt="изображение" src="https://github.com/user-attachments/assets/6d7a10e8-4e50-4e0b-a645-5c33f5338b0e" />
+
+After observing that rule, we can see that it triggers after unsuccessfull login attempt
+
+<img width="1723" height="238" alt="изображение" src="https://github.com/user-attachments/assets/72956c12-a646-44ad-a7e3-2b142c73431e" />
+
+Therefore, we can use it to write our custom rule that will detect brute-forcing based on multiple failed login attempts in short time span
+
+Added the following rule to local_rules.xml
+
+<img width="847" height="305" alt="изображение" src="https://github.com/user-attachments/assets/ab3f0dbe-540c-452f-9925-0b57a72165e1" />
+
+
