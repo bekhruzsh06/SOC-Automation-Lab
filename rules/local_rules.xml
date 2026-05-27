@@ -1,29 +1,53 @@
 <!-- Local rules -->
-
-<!-- Modify it at your will. -->
-<!-- Copyright (C) 2015, Wazuh Inc. -->
-
-<!-- Example -->
 <group name="local,syslog,sshd,">
 
-  <!--
-  Dec 10 01:02:02 host sshd[1234]: Failed none for root from 1.1.1.1 port 1066 ssh2
-  -->
+   <!-- OVERWRITE the default rule 5716 to remove the '^' anchor -->
+  <rule id="5716" level="5" overwrite="yes">
+    <if_sid>5700</if_sid>
+    <match>Failed password|error: PAM: Authentication</match>
+    <description>sshd: authentication failed.</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>authentication_failed,gdpr_IV_35.7.d,gdpr_IV_32.2,gpg13_7.1,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,pci_dss_10.2.4,pci_dss_10.2.5,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+  </rule>
+  
+
   <rule id="100001" level="5">
     <if_sid>5716</if_sid>
     <srcip>1.1.1.1</srcip>
     <description>sshd: authentication failed from IP 1.1.1.1.</description>
     <group>authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,</group>
   </rule>
-  
-    <rule id="100002" level="5">
+
+  <rule id="100002" level="15">
     <if_group>sysmon_event1</if_group>
     <field name="win.eventdata.originalFileName" type="pcre2">(?i)mimikatz\.exe</field>
     <description>Mimikatz Usage Detected</description>
     <mitre>
-    <id>T1003</id>
+      <id>T1003</id>
     </mitre>
   </rule>
 
+
+  <rule id="100003" level="12" frequency="5" timeframe="180">
+    <if_matched_sid>5760</if_matched_sid>
+    <same_source_ip />
+    <description>SSH Brute-Force detected from $(srcip)</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>authentication_failed,sshd,brute_force,</group>
+  </rule>
+
+
+  <rule id="100004" level="8" frequency="10" timeframe="600">
+    <if_matched_sid>5760</if_matched_sid>
+    <description>Distributed brute-force attack detected</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>authentication_failed,sshd,brute_force,distributed_attack,</group>
+  </rule>
 
 </group>
