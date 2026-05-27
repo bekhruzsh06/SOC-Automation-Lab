@@ -89,9 +89,22 @@ Attack was completed successfully
 <img width="1442" height="250" alt="изображение" src="https://github.com/user-attachments/assets/ddffa339-b05a-4cfb-9835-6b27df520e9b" />
 
 
-After checking the ElasticSearch, we can find out that event was captured successfully and triggered Wazuh rule with SID 5503
+After checking logs and ElasticSearch, we can find out that event was captured successfully and triggered Wazuh rule with SID 5760
+
+<img width="1793" height="292" alt="изображение" src="https://github.com/user-attachments/assets/67fab7dc-3379-47c3-b43c-51a80bbfff86" />
+
+Failed password is the brute-force attempt that we need to capture
 
 <img width="1493" height="777" alt="изображение" src="https://github.com/user-attachments/assets/6d7a10e8-4e50-4e0b-a645-5c33f5338b0e" />
+
+Now, we need to find out which rule triggers on the following event. To do so we need to execute wazuh-logtest, that shows which rule triggers on which log
+
+Running it gave the following the result
+
+
+
+Elastisearch:
+
 
 After observing that rule, we can see that it triggers after unsuccessfull login attempt
 
@@ -99,8 +112,12 @@ After observing that rule, we can see that it triggers after unsuccessfull login
 
 Therefore, we can use it to write our custom rule that will detect brute-forcing based on multiple failed login attempts in short time span
 
-Added the following rule to local_rules.xml
+And since the hydra is sending passwords from different IP addresses, I decided to add two rules: first rule detects brute-force from one IP address and second detects distributed brute-force from multiple IP addresses
 
-<img width="847" height="305" alt="изображение" src="https://github.com/user-attachments/assets/ab3f0dbe-540c-452f-9925-0b57a72165e1" />
+Added the following rules to local_rules.xml
 
-Rules updated, now if we run the brute-force on hydra again 
+<img width="862" height="466" alt="изображение" src="https://github.com/user-attachments/assets/d41bce94-3985-4691-970d-c579fa78e490" />
+
+
+
+Rules updated, now if we run the brute-force on hydra again we may notice two rules were triggered successfully 
