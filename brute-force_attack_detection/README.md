@@ -101,16 +101,15 @@ Now, we need to find out which rule triggers on the following event. To do so we
 
 Running it gave the following the result
 
+<img width="1784" height="738" alt="Screenshot 2026-05-27 204414" src="https://github.com/user-attachments/assets/c7d8667a-a30e-4860-8e9f-4b8fff7c8a2d" />
+
+So this means, this alert triggers the rule 5760, which we will use
 
 
-Elastisearch:
+After observing that rule, we can see that triggers when the event has Failed Password string, therefore it worked with our event
 
+<img width="1738" height="276" alt="2" src="https://github.com/user-attachments/assets/243afc44-348d-4763-9f2b-50ee3e308862" />
 
-After observing that rule, we can see that it triggers after unsuccessfull login attempt
-
-<img width="1723" height="238" alt="изображение" src="https://github.com/user-attachments/assets/72956c12-a646-44ad-a7e3-2b142c73431e" />
-
-Therefore, we can use it to write our custom rule that will detect brute-forcing based on multiple failed login attempts in short time span
 
 And since the hydra is sending passwords from different IP addresses, I decided to add two rules: first rule detects brute-force from one IP address and second detects distributed brute-force from multiple IP addresses
 
@@ -118,6 +117,13 @@ Added the following rules to local_rules.xml
 
 <img width="862" height="466" alt="изображение" src="https://github.com/user-attachments/assets/d41bce94-3985-4691-970d-c579fa78e490" />
 
-
-
 Rules updated, now if we run the brute-force on hydra again we may notice two rules were triggered successfully 
+
+<img width="1916" height="201" alt="1000004 rule detection" src="https://github.com/user-attachments/assets/8d4010fa-5ac7-4354-93d5-51420db1f5e2" />
+*Distributed Brute-force detection rule*
+
+<img width="1906" height="216" alt="Screenshot 2026-05-27 205132" src="https://github.com/user-attachments/assets/e7bf83d2-0d62-4878-ab8f-d15c65e9d52e" />
+*Brute-force from single IP detection rule*
+
+
+
