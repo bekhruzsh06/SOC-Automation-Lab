@@ -119,11 +119,13 @@ Added the following rules to local_rules.xml
 
 Rules updated, now if we run the brute-force on hydra again we may notice two rules were triggered successfully 
 
+
+<p allign="center">
 <img width="1916" height="201" alt="1000004 rule detection" src="https://github.com/user-attachments/assets/8d4010fa-5ac7-4354-93d5-51420db1f5e2" />
-*Distributed Brute-force detection rule*
-
+<em>Distributed Brute-force detection rule</em>
+<br>
 <img width="1906" height="216" alt="Screenshot 2026-05-27 205132" src="https://github.com/user-attachments/assets/e7bf83d2-0d62-4878-ab8f-d15c65e9d52e" />
-*Brute-force from single IP detection rule*
-
+<em>Brute-force from single IP detection rule</em>
+</p>
 
 
