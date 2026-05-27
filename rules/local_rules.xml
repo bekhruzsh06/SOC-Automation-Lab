@@ -1,17 +1,6 @@
 <!-- Local rules -->
 <group name="local,syslog,sshd,">
 
-   <!-- OVERWRITE the default rule 5716 to remove the '^' anchor -->
-  <rule id="5716" level="5" overwrite="yes">
-    <if_sid>5700</if_sid>
-    <match>Failed password|error: PAM: Authentication</match>
-    <description>sshd: authentication failed.</description>
-    <mitre>
-      <id>T1110</id>
-    </mitre>
-    <group>authentication_failed,gdpr_IV_35.7.d,gdpr_IV_32.2,gpg13_7.1,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,pci_dss_10.2.4,pci_dss_10.2.5,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
-  </rule>
-  
 
   <rule id="100001" level="5">
     <if_sid>5716</if_sid>
