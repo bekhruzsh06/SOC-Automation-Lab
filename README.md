@@ -16,6 +16,13 @@ The lab integrates SIEM, XDR, SOAR, endpoint telemetry, threat intelligence enri
 
 ## Skills Learned
 
+- YARA Rule Development
+- Wazuh and TheHive Set Up and Configuration
+- Sysmon Set Up
+- Setting up automation scenarios in Shuffle SOAR
+- Detecting attacks by Event ID
+- Mimikatz detection
+
 
 ## Stages
 
